@@ -3,7 +3,13 @@ const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
-io.set('origins', '*:*');
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*/*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    next();
+  }
+);
 
 app.get('/', function(req, res) {
   res.send('World Map API - opening a socket');
