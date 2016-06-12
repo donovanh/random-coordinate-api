@@ -51,7 +51,6 @@ setInterval(function() {
       longitude = getRandomNumber(-160, 160),
       eventName = aEventNames[Math.floor(Math.random()*aEventNames.length)];
   io.emit('ticket sale', { name: eventName, coords: [latitude,longitude]});
-  console.log('Sending an event', latitude, longitude);
 }, 2000);
 
 http.listen(app.get('port'), function() {
